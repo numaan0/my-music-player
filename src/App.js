@@ -1,9 +1,17 @@
 import './App.css';
+import React from 'react';
+import Sidebar from './components/sidebar';
 
-function App() {
-  // return (
-    
-  // );
-}
+const App = () =>{
+  return (
+    <div className='flex'>
+      <Sidebar/>
+      <div>
+
+      </div>
+    </div>
+
+  );
+};
 
 export default App;

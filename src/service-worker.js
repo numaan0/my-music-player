@@ -1,6 +1,5 @@
-// In your serviceWorker.js file
 self.addEventListener('install', function(event) {
-  /* eslint-disable-line no-restricted-globals */
+/* eslint-disable-line no-restricted-globals */
   event.waitUntil(
     caches.open('my-cache').then(function(cache) {
       return cache.addAll([
@@ -14,7 +13,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  /* eslint-disable-line no-restricted-globals */
+/* eslint-disable-line no-restricted-globals */
   event.respondWith(
     caches.match(event.request).then(function(response) {
       return response || fetch(event.request);

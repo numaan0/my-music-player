@@ -2,13 +2,11 @@
   text-align: center;
 }
 
-/* body {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.7) 100%), url('./assets/mainImages/main.jpeg');
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: center center;
-  background-attachment: fixed;
-} */
+body {
+  background: black;
+}
+
+
 
 .App-logo {
   height: 40vmin;
