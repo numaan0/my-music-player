@@ -7,6 +7,7 @@ import { FaMusic } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa';
 import { FaPlay } from 'react-icons/fa';
 import yt_icon from '../../assets/other/yt_icon.png';
+import './style.css'; 
 const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -15,7 +16,13 @@ const Sidebar = () => {
     }
 
     const playLists = [{'title':'Liked Music','name':'Auto Playlist'},{'title':'My Music','name':'Numan Nayeem'}
-    ,{'title':'Prophec','name':'Numan Numyeem'},{'title':'Unknown Music','name':'Playlist'},]
+    ,{'title':'Prophec','name':'Numan Numyeem'},{'title':'Unknown Music','name':'Playlist'},
+    ,{'title':'Prophec','name':'Numan Numyeem'},{'title':'Unknown Music','name':'Playlist'},
+    ,{'title':'Prophec','name':'Numan Numyeem'},{'title':'Unknown Music','name':'Playlist'},
+    ,{'title':'Prophec','name':'Numan Numyeem'},{'title':'Unknown Music','name':'Playlist'}
+
+
+]
 
 
     return (
@@ -51,7 +58,7 @@ const Sidebar = () => {
                 </div>
             </div>
 
-            <div className="p-2 overflow-y-scroll scrollbar-thin">
+            <div className="p-2 overflow-scroll  scrollbar-thumb-gray-400 scrollbar-thumb max-h-[20rem]">
                 {playLists.map((item, index)=>(
                     <div key={index} className="p-2 flex justify-between group hover:bg-gray-500 rounded-lg">
                         <div> <p className="">{item.title}</p>
