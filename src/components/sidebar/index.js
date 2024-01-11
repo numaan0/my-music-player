@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { FaBars } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
 import { FaHome } from 'react-icons/fa';
-import { FaCompass } from 'react-icons/fa';
+import { FaCompass, FaGlobe, FaLock, FaLink } from 'react-icons/fa';
 import { FaMusic } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa';
 import { FaPlay } from 'react-icons/fa';
 import yt_icon from '../../assets/other/yt_icon.png';
+import Select from 'react-select';
 import {
     Button,
     Dialog,
@@ -42,8 +43,18 @@ const Sidebar = () => {
     ,{'title':'Prophec','name':'Numan Numyeem'},{'title':'Unknown Music','name':'Playlist'},
     ,{'title':'Prophec','name':'Numan Numyeem'},{'title':'Unknown Music','name':'Playlist'}]
 
-
-
+    const options = [
+        { value: 'earth', label: 'Earth', icon: <FaGlobe /> },
+        { value: 'lock', label: 'Lock', icon: <FaLock /> },
+        { value: 'link', label: 'Link', icon: <FaLink /> },
+      ];
+      
+      const CustomOption = ({ label, data }) => (
+        <div>
+          {data.icon}
+          {label}
+        </div>
+      );
     return (
         <div className="w-1/6 text-white h-screen p-7 border-r border-gray-600" id="page-content">
             <div className="border-b border-gray-200 pb-5">
@@ -94,18 +105,27 @@ const Sidebar = () => {
             </div>
 
             <Dialog
-        size="xs"
+        size={"lg"}
         open={open}
         handler={handleDialog}
-        className="bg-transparent shadow-none fixed inset-0 flex items-center justify-center z-8 rounded-xl"
+        className="bg-transparent shadow-none fixed inset-0 flex items-center justify-center z-8 rounded-xl "
       >
-        <Card className="mx-auto w-full max-w-[24rem] bg-gray-400 text-white">
-          <CardBody className="flex flex-col gap-4">
+        <Card className="mx-auto w-full max-w-[24rem] bg-gray-800 text-white p-4">
+          <CardBody className="flex flex-col gap-4 p-4">
             <Typography variant="h4" color="blue-gray">
               New Playlist
             </Typography>
-            <Input size="xl" placeholder="Title" className="w-full placeholder-white outline-none border-b-2"/>
-            <Input  size="xl" placeholder="Description" className="w-full placeholder-white outline-none border-t-2" />
+            <Input size="xl" placeholder="Title" className="w-full placeholder-white outline-none border-b-2 mt-4"/>
+            <Input  size="xl" placeholder="Description" className="w-full placeholder-white outline-none border-b-2 mt-4" />
+            <div className="flex flex-col">
+            <label className="text-xs text-gray-400 mt-4" ><FaGlobe />Privacy </label>
+            <Select 
+                options={options} 
+                formatOptionLabel={CustomOption}
+                />
+           
+            </div>
+            
           </CardBody>
           <CardFooter className="pt-0">
             <Button variant="gradient" onClick={handleDialog} fullWidth>
