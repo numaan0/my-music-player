@@ -25,3 +25,52 @@
     filter: blur(2px);
     transition: filter 0.3s ease;
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+}
+.icon-drop-down{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.icon-public{
+  margin-top: 4px;
+  padding: 0 4px 0 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+}
+.dropbtn{
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown-content a {
+  color: whitesmoke;
+  padding: 12px;
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dropdown-content a span {
+  /* color: whitesmoke;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex; */
+  padding: 12px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  margin-top: -13px;
+}
