@@ -18,6 +18,16 @@ import {
 } from "@material-tailwind/react";
 import './style.css';
 const Sidebar = () => {
+  const [selectedDropDown, setDropDownOption] = useState({icon: <FaGlobe />, text: 'Public'});
+
+  const dropDownOptions = [
+    {icon: <FaGlobe />, text: 'Public', description: 'Anyone can view'},
+    {icon: <FaLink />, text: 'Unlisted', description: 'Anyone with the link can view'},
+    {icon: <FaLock />, text: 'Private', description: 'Only you can view'}
+  ];
+   
+  const [showOption, setOptionVisibilty] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const [open, setDialog] = React.useState(false);
 
@@ -121,39 +131,33 @@ const Sidebar = () => {
               <label className="text-xs text-gray-400 mt-4" >Privacy </label>
             
               <div class="dropdown">
-                <div className="dropbtn">
+                <div className="dropbtn" onClick={()=> setOptionVisibilty(!showOption)}>
                   <div className="flex icon-drop-down">
-                  <span className="icon-public"><FaGlobe /></span><p>Public</p>
+                  <span className="icon-public">{selectedDropDown.icon}</span>
+                  <p> {selectedDropDown.text} </p>
                   </div>
                   <span><FaAngleDown /></span>
                 </div>
+                {showOption && (
                 <div class="dropdown-content bg-gray-600 mb-4 rounded-md">
-                  <a ><span><FaGlobe /></span>
+                  {dropDownOptions.map((option, index)=>(
+                    <a className=" hover:bg-gray-500 cursor-pointer" key={index}  onClick={()=> {setDropDownOption(option); setOptionVisibilty(false);}} >
+                      <span>{option.icon}</span>
                     <div>
-                      <p >Public</p>
-                      <p className="text-xs text-gray-400 ">Anyone can view</p>
+                      <p >{option.text}</p>
+                      <p className="text-xs text-gray-400 ">{option.description}</p>
                     </div>
                   </a>
-                  <a>
-                    <span><FaLink /></span>
-                    <div>
-                      <p>Unlisted</p>
-                      <p className="text-xs text-gray-400 ">Anyone with the link can view</p>
-                    </div>
-                  </a>
-                  <a ><span><FaLock /></span>
-                    <div>
-                      <p>Private</p>
-                      <p className="text-xs text-gray-400">Only you can view</p>
-                    </div>
-                  </a>
+
+                  ))}
                 </div>
+                )}
               </div>
             </div>
 
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" onClick={handleDialog} fullWidth>
+            <Button className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full" variant="gradient" onClick={handleDialog} fullWidth>
               Save
             </Button>
           </CardFooter>
