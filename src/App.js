@@ -7,9 +7,9 @@ const App = () =>{
   return (
     <div className='flex'>
       <Sidebar/>
-      <div>
+      <div className='w-full'>
       <SearchBar/>
-        <MusicPlayer/>
+        {/* <MusicPlayer/> */}
       </div>
     </div>
 

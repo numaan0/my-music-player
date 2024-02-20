@@ -3,7 +3,8 @@
 }
 
 body {
-  background: black;
+  background: linear-gradient(to right, rgb(75, 48, 48) , rgb(66, 66, 35));
+  
 }
 
 
