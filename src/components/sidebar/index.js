@@ -65,7 +65,7 @@ const Sidebar = () => {
     </div>
   );
   return (
-    <div className="w-1/6 text-white h-screen p-7 border-r border-gray-600" id="page-content">
+    <div className="text-white h-screen p-7 border-r border-gray-600" id="page-content">
       <div className="border-b border-gray-200 pb-5">
         <div className="flex flex-row">
           <div className="p-3 text-2xl hover:bg-gray-500 rounded-2xl " onClick={handleSideBar}>

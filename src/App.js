@@ -6,13 +6,14 @@ import SearchBar from './components/search';
 const App = () =>{
   return (
     <div className='flex'>
+    <div className='w-1/6'>
       <Sidebar/>
-      <div className='w-full'>
-      <SearchBar/>
-        {/* <MusicPlayer/> */}
-      </div>
     </div>
-
+    <div className='w-5/6'>
+      <SearchBar/>
+      <MusicPlayer/>
+    </div>
+  </div>
   );
 };
 

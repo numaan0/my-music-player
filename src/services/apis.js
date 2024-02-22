@@ -8,15 +8,16 @@ const params = {
 };
 
 export const searchVideos = async (term) => {
-  const response = await axios.get(`${baseURL}/search`, {
-    params: {
-      ...params,
-      q: term,
-      type: 'video,playlist'
-    }
-  });
-
-  return response.data.items;
+    const response = await axios.get(`${baseURL}/search`, {
+      params: {
+        ...params,
+        q: term,
+        type: 'video,playlist'
+      }
+    });
+  
+    return response.data.items;
+  
 };
 
 export const getVideoDetails = async (id) => {

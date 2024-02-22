@@ -1,28 +1,17 @@
 import React from 'react';
-import ReactPlayer from 'react-player';
-
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+import song from '../../assets/musicPlayer/song.mp3'
 function MusicPlayer() {
   return (
-    <div className='player-wrapper'>
-      <ReactPlayer
-        className='react-player'
-        url='https://www.youtube.com/watch?v=LXb3EKWsInQ'
-        width='100%'
-        height='50'
-        playing={true}
-        controls={true}
-        config={{
-          youtube: {
-            playerVars: { showinfo: 1 }
-          },
-          file: {
-            attributes: {
-              controlsList: 'nodownload'  // this is to prevent downloading of video files
-            }
-          }
-        }}
-      />
-    </div>
+
+  <div class="fixed bottom">
+    <AudioPlayer
+      autoPlay
+      src={song}
+      onPlay={e => console.log("onPlay")}
+  />
+  </div>     
   );
 }
 
