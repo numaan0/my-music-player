@@ -1,4 +1,5 @@
 .bottom{
     bottom: 0;
     width:83%;
+    position: sticky;
 }

@@ -3,10 +3,11 @@
 }
 
 body {
-  background: linear-gradient(to right, rgb(75, 48, 48) , rgb(66, 66, 35));
-  
-}
+  /* background: linear-gradient(to right, rgb(75, 48, 48) , rgb(66, 66, 35)); */
+   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(hsl(3deg 60% 29.41%), #FF2E4C);
 
+}  
 
 
 .App-logo {

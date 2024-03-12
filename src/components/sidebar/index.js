@@ -33,6 +33,7 @@ const Sidebar = () => {
 
   const handleSideBar = () => {
     setIsOpen(!isOpen)
+    console.log(isOpen);
   }
 
   const handleDialog = () => {
@@ -65,41 +66,41 @@ const Sidebar = () => {
     </div>
   );
   return (
-    <div className="text-white h-screen p-7 border-r border-gray-600" id="page-content">
-      <div className="border-b border-gray-200 pb-5">
+    <div className="text-white h-screen p-7 border-r border-gray-600 sm:p-0 xs:p-0" id="page-content">
+      <div className="border-b border-gray-200 pb-5 pt-4">
         <div className="flex flex-row">
-          <div className="p-3 text-2xl hover:bg-gray-500 rounded-2xl " onClick={handleSideBar}>
+          <div className="p-3 text-2xl hover:bg-gray-500 rounded-2xl sm:hidden xs:hidden" onClick={handleSideBar}>
             {isOpen ? <FaTimes /> : <FaBars />}
           </div>
-          <div className="flex p-2 justify-center items-center">
+          <div className="flex p-2 justify-center items-center xs:justify-start xs:pt-2 sm:pt-2">
             <img src={yt_icon} className="object-contain h-7 w-8" alt="Icon"></img>
-            <spam className="text-3xl">Music</spam>
+            <spam className="text-3xl xs:hidden sm:hidden">Music</spam>
           </div>
         </div>
-        <div className="text-2xl p-2">
+        <div className="text-xl p-2">
           <div className="flex flex-row hover:bg-gray-500 rounded-lg cursor-pointer">
             <p className="p-2 flex items-center justify-start"><FaHome /> </p>
-            <p className="m-2 p-2 flex justify-center">Home</p>
+            <p className={`m-2 p-2 flex justify-center sm:hidden xs:hidden `}>Home</p>
           </div>
           <div className="flex flex-row hover:bg-gray-500 rounded-lg cursor-pointer">
             <p className="p-2 flex items-center justify-start"><FaCompass /> </p>
-            <p className="m-2 p-2 flex justify-center">Explore</p>
+            <p className={`m-2 p-2 flex justify-center sm:hidden xs:hidden`}>Explore</p>
           </div>
           <div className="flex flex-row hover:bg-gray-500 rounded-lg cursor-pointer">
             <p className="p-2 flex items-center justify-start"><FaMusic /> </p>
-            <p className="m-2 p-2 flex justify-center">Library</p>
+            <p className={`m-2 p-2 flex justify-center md:visible sm:hidden xs:hidden`}>Library</p>
           </div>
         </div>
       </div>
       <div className="p-2 mt-2">
         <Button onClick={handleDialog} variant="gradient">
           <div className="flex flex-row bg-gray-600 rounded-lg justify-center items-center p-2 hover:bg-gray-500 cursor-pointer">
-            <span className="mr-2"><FaPlus /></span> <p className="">New playlist</p>
+            <span className="mr-2"><FaPlus /></span> <p className="xs:hidden sm:hidden">New playlist</p>
           </div>
         </Button>
       </div>
 
-      <div className="p-2 overflow-scroll  scrollbar-thumb-gray-400 scrollbar-thumb max-h-[20rem]">
+      <div className="p-2 overflow-scroll  scrollbar-thumb-gray-400 scrollbar-thumb max-h-[20rem] xs:hidden sm:hidden">
         {playLists.map((item, index) => (
           <div key={index} className="p-2 flex justify-between group hover:bg-gray-500 rounded-lg">
             <div> <p className="">{item.title}</p>
