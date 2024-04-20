@@ -75,13 +75,13 @@ function MusicExplore({ playItem }) {
 
 
     return (
-        <div className="p-4 overflow-scroll">
+        <div className="p-4 lg:pb-8 md:pb-4 sm:pb-0">
             <h1 className="text-center mt-5 text-white text-2xl">Explore</h1>
             <h1 className=" mt-2 text-white text-2xl">Punjabi Music Trending</h1>
-            <div className="p-4 w-max border-solid bg-slate-800 rounded-md ">
-                <div className="flex space-x-4">
+            <div className="p-4 border-solid bg-slate-800 rounded-md overflow-x-scroll">
+                <div className="w-max flex space-x-4">
                     {isLoading ? (
-                        <div className="w-max bg-slate-600 rounded-sm">
+                        <div className=" bg-slate-600 rounded-sm">
                             <MagnifyingGlass
                                 visible={true}
                                 height="80"
@@ -100,7 +100,7 @@ function MusicExplore({ playItem }) {
                             <div
                                 onClick={() => getSongDetails(item)}
                                 key={index}
-                                className="bg-slate-600 text-white p-4 hover:bg-slate-900 cursor-pointer flex flex-col max-w-md w-card rounded-md overflow-hidden"
+                                className="w-full text-white  hover:bg-slate-900 cursor-pointer flex flex-col  w-card rounded-md"
                             >
                                 <img
                                       src={item.thumbnail.thumbnails[0].url}
@@ -117,8 +117,8 @@ function MusicExplore({ playItem }) {
                 </div>
             </div>
             <h1 className=" mt-2 text-white text-2xl">Bollywood Music Trending</h1>    
-            <div className="p-4 w-max border-solid bg-slate-800 rounded-md mt-5 ">
-                <div className="flex space-x-4">
+            <div className="p-4 border-solid bg-slate-800 rounded-md mt-5 overflow-x-scroll ">
+                <div className="w-max flex space-x-4 ">
                     {isLoadingBollywood ? (
                         <div className="w-max bg-slate-600 rounded-sm">
                             <MagnifyingGlass
@@ -139,7 +139,7 @@ function MusicExplore({ playItem }) {
                             <div
                                 onClick={() => getSongDetails(item)}
                                 key={index}
-                                className="bg-slate-600 text-white p-4 hover:bg-slate-900 cursor-pointer flex flex-col max-w-md w-card rounded-md overflow-hidden"
+                                className=" text-white  hover:bg-slate-900 cursor-pointer flex flex-col  w-card rounded-md"
                             >
                                 <img
                                       src={item.thumbnail.thumbnails[0].url}

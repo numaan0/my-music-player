@@ -1,12 +1,13 @@
 import './App.css';
-import React,{useState} from 'react';
-import Sidebar from './components/sidebar';
-import MusicPlayer from './components/MusicPlayer';
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import SearchBar from './components/search';
 import MusicExplore from './components/MusicExplore';
-const App = () =>{
-  const [currentlyPlayingItem, setCurrentlyPlayingItem] = useState(null);
+import MusicPlayer from './components/MusicPlayer';
+import Navigation from './components/Navigation';
 
+const Home = () => {
+  const [currentlyPlayingItem, setCurrentlyPlayingItem] = useState(null);
   const playItem = (item) => {
     setCurrentlyPlayingItem(item);
   };
@@ -14,18 +15,40 @@ const App = () =>{
   const stopPlaying = () => {
     setCurrentlyPlayingItem(null);
   };
+  return(
+   <div>
+  <SearchBar playItem={playItem} />
+  <MusicExplore playItem={playItem} />
+  {currentlyPlayingItem && <MusicPlayer item={currentlyPlayingItem} stopPlaying={stopPlaying} />}
+  </div>
+  ); 
+};
+
+const Explore = () => {
+  // Your Explore component code here
+  return <div>Explore Component</div>;
+};
+
+const Profile = () => {
+  // Your Profile component code here
+  return <div>Profile Component</div>;
+};
+
+const App = () => {
+ 
 
   return (
-    <div className='flex'>
-    <div className='w-1/6 md:w-14 sm:w-10'>
-      <Sidebar/>
-    </div>
-    <div className='w-11/12 overflow-hidden'>
-    <SearchBar playItem={playItem}/>
-    <MusicExplore playItem={playItem} />
-    {currentlyPlayingItem && <MusicPlayer item={currentlyPlayingItem} stopPlaying={stopPlaying} />}
-    </div>
-  </div>
+    <BrowserRouter>
+      <div className='min-h-screen flex flex-col overflow-hidden'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+        <Navigation />
+        
+      </div>
+    </BrowserRouter>
   );
 };
 
