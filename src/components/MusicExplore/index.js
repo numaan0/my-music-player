@@ -75,7 +75,7 @@ function MusicExplore({ playItem }) {
 
 
     return (
-        <div className="p-4 lg:pb-8 md:pb-4 sm:pb-0">
+        <div className="p-4 pb-32 sm:pb-32 xs:pb-32">
             <h1 className="text-center mt-5 text-white text-2xl">Explore</h1>
             <h1 className=" mt-2 text-white text-2xl">Punjabi Music Trending</h1>
             <div className="p-4 border-solid bg-slate-800 rounded-md overflow-x-scroll">

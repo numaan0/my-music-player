@@ -1,14 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { searchSongs } from '../../services/apis';
 import './style.css';
+import { FaArrowCircleLeft, FaArrowCircleRight,FaPause, FaPlay } from 'react-icons/fa';
 
 function MusicPlayer({ item, stopPlaying }) {
   const [playList, setPlaylist] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentItem, setCurrentItem] = useState(item); // New state for the current item
+  const [isPlaying, setIsPlaying] = useState(true);
+  const audioRef = useRef(null);
+  const handlePlayPause = () => {
+    const audio = audioRef.current.audio.current; // Get the audio element
 
+    if (isPlaying) {
+      audio.pause(); // Pause the audio
+    } else {
+      audio.play(); // Play the audio
+    }
+    setIsPlaying(!isPlaying); // Toggle play/pause state
+  };
   useEffect(() => {
     const fetchSongs = async () => {
       try {
@@ -39,22 +51,36 @@ function MusicPlayer({ item, stopPlaying }) {
   }, [item]);
 
   const url = `https://backend-music-app-v1.onrender.com/stream/${currentItem.videoId}`;
+  // const url = `http://localhost:3000/stream/${currentItem.videoId}`;
 
   return (
-    <div className="fixed bottom mt-2">
-      <h1 className="text-center font-semibold bg-white">
+    <div className=" w-full">
+      <div className='bg-white text-center'>
+      <h1 className="text-center font-semibold ">
         Currently Playing: {currentItem.title.slice(0, 20)}
       </h1>
-      <div className="flex justify-center">
+      </div>
+      <div>
+
+
+  </div>
+      <div className="flex justify-center w-full">
+       
         <AudioPlayer
+          autoPlay
           autoPlayAfterSrcChange
-          showSkipControls={false}
+          showSkipControls={true}
           src={url}
           onPlay={(e) => console.log("onPlay", e)}
           crossOrigin="anonymous"
+          className='rounded'
+          ref={audioRef} 
+          onEnded={handleNextSong} 
+          onClickNext={handleNextSong}
+          onClickPrev={handlePreviousSong}
+          
         />
-        <button onClick={handlePreviousSong}>Previous Song</button>
-        <button onClick={handleNextSong}>Next Song</button>
+        
       </div>
     </div>
   );

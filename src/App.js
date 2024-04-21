@@ -1,13 +1,12 @@
 import './App.css';
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SearchBar from './components/search';
 import MusicExplore from './components/MusicExplore';
 import MusicPlayer from './components/MusicPlayer';
 import Navigation from './components/Navigation';
 
-const Home = () => {
-  const [currentlyPlayingItem, setCurrentlyPlayingItem] = useState(null);
+const Home = ({ currentlyPlayingItem, setCurrentlyPlayingItem }) => {
   const playItem = (item) => {
     setCurrentlyPlayingItem(item);
   };
@@ -15,13 +14,14 @@ const Home = () => {
   const stopPlaying = () => {
     setCurrentlyPlayingItem(null);
   };
-  return(
-   <div>
-  <SearchBar playItem={playItem} />
-  <MusicExplore playItem={playItem} />
-  {currentlyPlayingItem && <MusicPlayer item={currentlyPlayingItem} stopPlaying={stopPlaying} />}
-  </div>
-  ); 
+
+  return (
+    <div>
+      <SearchBar playItem={playItem} />
+      <MusicExplore playItem={playItem} />
+      {/* {currentlyPlayingItem && <MusicPlayer item={currentlyPlayingItem} stopPlaying={stopPlaying} />} */}
+    </div>
+  );
 };
 
 const Explore = () => {
@@ -35,18 +35,20 @@ const Profile = () => {
 };
 
 const App = () => {
- 
+  const [currentlyPlayingItem, setCurrentlyPlayingItem] = useState(null);
 
   return (
     <BrowserRouter>
       <div className='min-h-screen flex flex-col overflow-hidden'>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={<Home currentlyPlayingItem={currentlyPlayingItem} setCurrentlyPlayingItem={setCurrentlyPlayingItem} />}
+          />
           <Route path="/explore" element={<Explore />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
-        <Navigation />
-        
+        <Navigation currentlyPlayingItem={currentlyPlayingItem} stopPlaying={() => setCurrentlyPlayingItem(null)} />
       </div>
     </BrowserRouter>
   );
