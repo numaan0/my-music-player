@@ -63,7 +63,7 @@ const SearchBar = ({ playItem }) => {
       </form>
 
        
-      <div className=' xs:w-3/4 overflow-x-hidden overflow-y-scroll fixed w-full z-50 h-1/3 rounded-md lg:w-2/3'>
+      <div className=' xs:w-3/4 overflow-x-hidden  fixed w-full z-50 h-1/3 rounded-md lg:w-2/3'>
       {isLoading ? ( // Show loader while loading
         <div className='w-full bg-slate-600 rounded-sm'>
           <MagnifyingGlass
