@@ -48,7 +48,7 @@ const App = () => {
           <Route path="/explore" element={<Explore />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
-        <Navigation currentlyPlayingItem={currentlyPlayingItem} stopPlaying={() => setCurrentlyPlayingItem(null)} />
+      <Navigation currentlyPlayingItem={currentlyPlayingItem} stopPlaying={() => setCurrentlyPlayingItem(null)} />
       </div>
     </BrowserRouter>
   );

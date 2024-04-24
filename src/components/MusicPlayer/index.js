@@ -3,7 +3,6 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { searchSongs } from '../../services/apis';
 import './style.css';
-import { FaArrowCircleLeft, FaArrowCircleRight,FaPause, FaPlay } from 'react-icons/fa';
 
 function MusicPlayer({ item, stopPlaying }) {
   const [playList, setPlaylist] = useState([]);
@@ -24,7 +23,7 @@ function MusicPlayer({ item, stopPlaying }) {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const library = await searchSongs("trending songs", 10);
+        const library = await searchSongs("Punjabi Latest 2024 trending", 10);
         setPlaylist(library);
       } catch (error) {
         console.error("Error fetching songs:", error);

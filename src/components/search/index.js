@@ -16,7 +16,7 @@ const SearchBar = ({ playItem }) => {
     setLoader(true)
     e.preventDefault();
     try {
-      const results = await searchSongs(term, 5);
+      const results = await searchSongs(term, 10);
       setResults(results);
     } catch (error) {
       console.log("Error", error);
@@ -63,7 +63,7 @@ const SearchBar = ({ playItem }) => {
       </form>
 
        
-      <div className=' xs:w-3/4 overflow-x-hidden overflow-y-scroll fixed w-full z-50'>
+      <div className=' xs:w-3/4 overflow-x-hidden overflow-y-scroll fixed w-full z-50 h-1/3 rounded-md lg:w-2/3'>
       {isLoading ? ( // Show loader while loading
         <div className='w-full bg-slate-600 rounded-sm'>
           <MagnifyingGlass

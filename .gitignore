@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+searchBAR2.js
+searbar1.js
 # testing
 /coverage
 

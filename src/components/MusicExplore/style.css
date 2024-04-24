@@ -1,3 +1,30 @@
-.w-card{
+/* .w-card{
     width: -webkit-fill-available;
-}
+} */
+
+::-webkit-scrollbar {
+    width: 2px;
+    border-radius: 12px;
+    height: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgb(178, 45, 45);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d90303;
+    border-radius: 16px;
+    /* width: 2px; */
+  }
+
+  @media only screen and (max-width: 600px) {
+    ::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 12px;
+        height: 4px;
+      }
+  }
+  
