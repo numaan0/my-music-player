@@ -59,26 +59,17 @@ const SearchBar = ({ playItem }) => {
           onChange={handleChange}
           placeholder="Search songs..."
         />
-        <button class="bg-slate-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Search</button>
+        <button className="bg-slate-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Search</button>
       </form>
 
        
-      <div className=' xs:w-3/4 overflow-x-hidden  fixed w-full z-50 h-1/3 rounded-md lg:w-2/3'>
-      {isLoading ? ( // Show loader while loading
-        <div className='w-full bg-slate-600 rounded-sm'>
-          <MagnifyingGlass
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="magnifying-glass-loading"
-            wrapperStyle={{}}
-            wrapperClass="magnifying-glass-wrapper"
-            glassColor="#c0efff"
-            color="#e15b64"
-          />
-        </div> 
-        ) :
-        (
+      {results && results.length > 0 && (
+      <div className=' xs:w-3/4 overflow-x-hidden  absolute w-full z-50 h-1/3 rounded-md lg:w-2/3'>
+        {isLoading ? (
+          <div className='w-full bg-slate-600 rounded-sm'>
+            {/* Loader */}
+          </div> 
+        ) : (
           // Render search results here (map over 'results' array)
           Array.isArray(results) &&
           results.map((item, index) => (
@@ -92,9 +83,10 @@ const SearchBar = ({ playItem }) => {
           ))
         )}
       </div>
+    )}
 
-      {/* {itemPlaying && <MusicPlayer itemPlaying={itemPlaying} />} */}
-    </div>
+    {/* {itemPlaying && <MusicPlayer itemPlaying={itemPlaying} />} */}
+  </div>
   );
 };
 

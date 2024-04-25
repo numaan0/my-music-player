@@ -23,7 +23,7 @@ function MusicPlayer({ item, stopPlaying }) {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const library = await searchSongs("Punjabi Latest 2024 trending", 10);
+        const library = await searchSongs(`${currentItem.title.slice(0, 20)} songs 2024 latest`, 20);
         setPlaylist(library);
       } catch (error) {
         console.error("Error fetching songs:", error);

@@ -1,168 +1,87 @@
 import React, { useState, useEffect } from 'react';
-import { searchVideos, searchSongs } from '../../services/apis';
+import { searchSongs } from '../../services/apis';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MusicPlayer from '../MusicPlayer';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import './style.css';
-import fallback from '../../assets/other/Designer.png'
+import fallback from '../../assets/other/Designer.png';
+import MusicSection from '../../helper/musicExploreHelper';
 
-function MusicExplore({ playItem }) {
-
+const useApiData = (initialState, searchQuery, limit) => {
+    const [results, setResults] = useState(initialState);
+    const [isLoading, setIsLoading] = useState(false);
+  
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const data = await searchSongs(searchQuery, limit);
+        setResults(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        toast.error(`Oops! Something went wrong with fetching ${searchQuery} music.`, {
+          position: "top-right",
+          autoClose: 1200,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+  
     useEffect(() => {
-        callApiPunjabi();
-        callApiBollywood();
+      fetchData();
     }, []);
+  
+    return [results, isLoading];
+  };
 
-    // const [results, setResults] = useState(null);
-    const [resultsBollywood, setResultsBollywood] = useState(null);
-    const [resultsPunjabi, setResultsPunjabi] = useState(null);
-    // const [itemPlaying, setItemPlaying] = useState(null);
-    const [isLoadingBollywood, setLoaderBollywood] = useState(false)
-    const [isLoading, setLoader] = useState(false)
-
-    const callApiPunjabi = async (e) => {
-        setLoader(true)
-        // e.preventDefault();
-        try {
-            const resultsPunjabi = await searchSongs("Punjabi Latest 2024 trending", 30);
-            setResultsPunjabi(resultsPunjabi);
-        } catch (error) {
-            console.log("Error", error);
-            toast.error("Oops! Something went wrong with fetching explore music.", {
-                position: "top-right",
-                autoClose: 1200,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } finally {
-            setLoader(false)
-        }
-    };
-
-    const callApiBollywood = async (e) => {
-        setLoaderBollywood(true)
-        // e.preventDefault();
-        try {
-            const resultsBollywood = await searchSongs("Bollywood latest songs 2024 trending", 30);
-            setResultsBollywood(resultsBollywood);
-        } catch (error) {
-            console.log("Error", error);
-            toast.error("Oops! Something went wrong with fetching explore music.", {
-                position: "top-right",
-                autoClose: 1200,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } finally {
-            setLoaderBollywood(false)
-        }
-    };
-    //   console.log(results,"Nau");
+const MusicExplore = ({ playItem }) => {
+    const [resultsBollywood, isLoadingBollywood] = useApiData(null, "Bollywood Latest 2024 trending", 30);
+    const [resultsPunjabi, isLoadingPunjabi] = useApiData(null, "Punjabi Music", 30);
+    const [resultsCokeStudio, isLoadingCokeStudio] = useApiData(null, "Coke Studio Latest 2024", 30);
+  
     const getSongDetails = (item) => {
-        // setItemPlaying(item);
-        playItem(item);
-        // setResults(null);
-        // setTerm('');
+      // setItemPlaying(item);
+      playItem(item);
+      // setResults(null);
+      // setTerm('');
     };
+    
+  return (
+    <div className="p-1 lg:pb-32 sm:pb-16 padding-bottom">
+      <h1 className="text-center mt-1 text-white text-2xl">Explore</h1>
+      
 
+      {/* Bollywood Music Trending Section */}
+      <MusicSection
+        title="Bollywood Trending"
+        isLoading={isLoadingBollywood}
+        results={resultsBollywood}
+        onClick={getSongDetails}
+      />
+      
+      {/* Punjabi Music Trending Section */}
+      <MusicSection
+        title="Punjabi Trending"
+        isLoading={isLoadingPunjabi}
+        results={resultsPunjabi}
+        onClick={getSongDetails}
+      />
+      <MusicSection
+        title="Coke Studio"
+        isLoading={isLoadingCokeStudio}
+        results={resultsCokeStudio}
+        onClick={getSongDetails}
+      />
+      
+      <ToastContainer />
+    </div>
+  );
+};
 
-
-    return (
-        <div className="p-1">
-            <h1 className="text-center mt-1 text-white text-2xl">Explore</h1>
-            <h1 className=" mt-2 ml-2 text-white text-xl">Punjabi Music Trending</h1>
-            <div className="p-2 border-solid  rounded-md overflow-x-scroll">
-                <div className="w-max flex space-x-3 ">
-                    {isLoading ? (
-                        <div className=" bg-slate-600 rounded-sm">
-                            <MagnifyingGlass
-                                visible={true}
-                                height="80"
-                                width="80"
-                                ariaLabel="magnifying-glass-loading"
-                                wrapperStyle={{}}
-                                wrapperClass="magnifying-glass-wrapper"
-                                glassColor="#c0efff"
-                                color="#e15b64"
-                            />
-                        </div>
-                    ) : (
-                        // Render search results here (map over 'results' array)
-                        Array.isArray(resultsPunjabi) &&
-                        resultsPunjabi.map((item, index) => (
-                            <div
-                                onClick={() => getSongDetails(item)}
-                                key={index}
-                                className="w-full text-white  hover:bg-slate-900 cursor-pointer flex flex-col  w-card rounded-md">
-                                <img
-                                    src={item.thumbnail.thumbnails[0].url}
-                                    // src={fallback}
-                                    alt={item.title}
-                                    className="w-full h-28 object-cover"
-                                />
-                                <h3 className="text-sm ml-1 font-semibold mt-2">
-                                    {item.title.slice(0, 20)}...
-                                </h3>
-                            </div>
-                        ))
-                    )}
-                </div>
-            </div>
-            <div className='mt-3'>
-
-                <h1 className=" ml-2 text-white text-xl">Bollywood Music Trending</h1>
-                <div className="p-2 border-solid rounded-md mt-0 overflow-x-scroll ">
-                    <div className="w-max flex space-x-3 ">
-                        {isLoadingBollywood ? (
-                            <div className="w-max bg-slate-600 rounded-sm">
-                                <MagnifyingGlass
-                                    visible={true}
-                                    height="80"
-                                    width="80"
-                                    ariaLabel="magnifying-glass-loading"
-                                    wrapperStyle={{}}
-                                    wrapperClass="magnifying-glass-wrapper"
-                                    glassColor="#c0efff"
-                                    color="#e15b64"
-                                />
-                            </div>
-                        ) : (
-                            // Render search results here (map over 'results' array)
-                            Array.isArray(resultsBollywood) &&
-                            resultsBollywood.map((item, index) => (
-                                <div
-                                    onClick={() => getSongDetails(item)}
-                                    key={index}
-                                    className=" text-white  hover:bg-slate-900 cursor-pointer flex flex-col  w-card rounded-md"
-                                >
-                                    <img
-                                        src={item.thumbnail.thumbnails[0].url}
-                                        // src={fallback}
-                                        alt={item.title}
-                                        className="w-full h-28 object-cover"
-                                    />
-                                    <h3 className="text-sm ml-1 font-semibold mt-2">
-                                        {item.title.slice(0, 20)}...
-                                    </h3>
-                                </div>
-                            ))
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            {/* {itemPlaying && <MusicPlayer itemPlaying={itemPlaying} />} */}
-
-        </div>
-    )
-
-}
 
 export default MusicExplore;

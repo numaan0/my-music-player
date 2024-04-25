@@ -131,7 +131,7 @@ const Sidebar = () => {
               
               <label className="text-xs text-gray-400 mt-4" >Privacy </label>
             
-              <div class="dropdown">
+              <div className="dropdown">
                 <div className="dropbtn" onClick={()=> setOptionVisibilty(!showOption)}>
                   <div className="flex icon-drop-down">
                   <span className="icon-public">{selectedDropDown.icon}</span>
@@ -140,7 +140,7 @@ const Sidebar = () => {
                   <span><FaAngleDown /></span>
                 </div>
                 {showOption && (
-                <div class="dropdown-content bg-gray-600 mb-4 rounded-md">
+                <div className="dropdown-content bg-gray-600 mb-4 rounded-md">
                   {dropDownOptions.map((option, index)=>(
                     <a className=" hover:bg-gray-500 cursor-pointer" key={index}  onClick={()=> {setDropDownOption(option); setOptionVisibilty(false);}} >
                       <span>{option.icon}</span>

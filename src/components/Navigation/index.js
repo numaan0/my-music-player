@@ -121,13 +121,13 @@ function Navigation({ currentlyPlayingItem, stopPlaying }) {
       <nav className='bg-slate-800'>
         <BottomNavigation sx={{ width: '100%' }} value={value} onChange={handleChange}>
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <BottomNavigationAction label="Home" value="/" icon={<HomeIcon />} />
+            <BottomNavigationAction  value="/" icon={<HomeIcon />} />
           </Link>
           <Link to="/explore" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <BottomNavigationAction label="Explore" value="/explore" icon={<ExploreIcon />} />
+            <BottomNavigationAction  value="/explore" icon={<ExploreIcon />} />
           </Link>
           <Link to="/profile" >
-            <BottomNavigationAction label="Profile" value="/profile" icon={<AccountCircleIcon />} />
+            <BottomNavigationAction value="/profile" icon={<AccountCircleIcon />} />
           </Link>
           {/* <BottomNavigationAction label="Music" value="/Music" icon={<QueueMusicIcon />} onClick={handleMusicClick} /> */}
         </BottomNavigation>
