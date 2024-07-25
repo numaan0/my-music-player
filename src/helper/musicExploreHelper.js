@@ -21,7 +21,8 @@ const MusicSection = ({ title, isLoading, results, onClick }) => (
             <img
               src={item.thumbnail.thumbnails[0].url}
               alt={item.title}
-              className="w-full h-28 object-cover"
+             
+              className="h-20 object-cover w-full max-w-[90%]"
             />
             <h3 className="text-sm ml-1 font-semibold mt-2">{item.title.slice(0, 20)}...</h3>
           </div>

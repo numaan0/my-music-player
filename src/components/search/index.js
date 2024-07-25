@@ -53,13 +53,13 @@ const SearchBar = ({ playItem }) => {
       <ToastContainer />
       <form onSubmit={callApi} className='flex gap-3'>
         <input 
-          className="bg-slate-800 hover:bg-slate-950 text-white py-2 px-4 rounded-full w-full"
+          className="bg-slate-100 hover:bg-slate-100 text-gray-950 py-2 px-4 rounded-sm w-full"
           type="text"
           value={term}
           onChange={handleChange}
           placeholder="Search songs..."
         />
-        <button className="bg-slate-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Search</button>
+        <button className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-full">Search</button>
       </form>
 
        
